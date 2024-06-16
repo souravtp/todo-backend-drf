@@ -40,7 +40,7 @@ def update_todo(request, pk):
             serializer = TodoSerializer(todo)
             return Response(serializer.data)
         elif request.method == 'PATCH':
-            serializer = TodoSerializer(instance=todo, data=request.data)
+            serializer = TodoSerializer(instance=todo, data=request.data, partial=True)
             if serializer.is_valid():
                 serializer.save()
                 return Response(serializer.data, status=status.HTTP_202_ACCEPTED)
